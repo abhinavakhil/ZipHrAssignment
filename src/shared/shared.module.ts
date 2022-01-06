@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaginationComponent } from './components/pagination/pagination.component';
+import { NgModule } from '@angular/core';
 import { JwPaginationModule } from 'jw-angular-pagination';
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { Pipes } from './pipes';
 
 @NgModule({

@@ -86,6 +86,11 @@ export class PostsComponent implements OnInit, OnDestroy {
   selectedUser(event: any) {
     const user = (<HTMLInputElement>event.target).value;
 
+    this.router.navigate(['.'], {
+      relativeTo: this.activatedRoute,
+      queryParams: { user: user },
+    });
+
     if (user !== '0') {
       this.pageOfItems = this.posts.filter((item) => item.userId == user);
     }

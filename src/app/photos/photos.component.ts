@@ -92,6 +92,11 @@ export class PhotosComponent implements OnInit, OnDestroy {
   selectedAlbum(event: any) {
     const album = (<HTMLInputElement>event.target).value;
 
+    this.router.navigate(['.'], {
+      relativeTo: this.activatedRoute,
+      queryParams: { album: album },
+    });
+
     if (album !== '0') {
       this.pageOfItems = this.photos
         .filter((item) => item.albumId == album)

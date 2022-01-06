@@ -131,6 +131,11 @@ export class AlbumsComponent implements OnInit, OnDestroy {
   selectedUser(event: any) {
     const user = (<HTMLInputElement>event.target).value;
 
+    this.router.navigate(['.'], {
+      relativeTo: this.route,
+      queryParams: { userId: user },
+    });
+
     if (user !== '0') {
       this.pageOfItems = this.allAlbums.filter((item) => item.userId == user);
     }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PagenotfoundComponent } from 'src/shared/components/pagenotfound/pagenotfound.component';
 import { AlbumItemComponent } from './albums/album-item/album-item.component';
 import { PhotoItemComponent } from './photos/photo-item/photo-item.component';
 import { PostItemComponent } from './posts/post-item/post-item.component';
@@ -21,13 +22,12 @@ const routes: Routes = [
       import('./posts/posts.module').then((m) => m.PostsModule),
   },
   {
-      path: 'posts/:id',
-      component: PostItemComponent,
+    path: 'posts/:id',
+    component: PostItemComponent,
   },
   {
     path: 'user/:userId',
-    loadChildren: () =>
-      import('./user/user.module').then((m) => m.UserModule),
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
   {
     path: 'albums',
@@ -36,7 +36,7 @@ const routes: Routes = [
   },
   {
     path: 'albums/:id',
-    component: AlbumItemComponent
+    component: AlbumItemComponent,
   },
   {
     path: 'photos',
@@ -45,11 +45,12 @@ const routes: Routes = [
   },
   {
     path: 'photos/:id',
-    component: PhotoItemComponent
-  }
+    component: PhotoItemComponent,
+  },
+  { path: '**', component: PagenotfoundComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
