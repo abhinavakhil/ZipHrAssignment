@@ -1,0 +1,17 @@
+<div class="latest-posts">
+  <div class="card">
+    <div class="card-header">Latest Posts</div>
+
+    <div class="card-body card-common">
+      <ul class="list-group list-group-flush" *ngFor="let post of latestPosts">
+        <li class="list-group-item p-0">
+          <h6 class="link" routerLink="/posts/{{ post.id }}">
+            {{ post.title | truncate: 40 | titlecase }}
+          </h6>
+          <p>{{ post.body }}</p>
+          <hr />
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="posts container px-4 pt-4 px-sm-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item link" routerLink="/dashboard">Dashboard</li>
+      <li class="breadcrumb-item active" aria-current="page">Posts</li>
+    </ol>
+  </nav>
+
+  <h2>Posts</h2>
+
+  <div class="row align-items-start">
+    <div class="col-md-2 col-sm-2 col-sm-4">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Search"
+        name="searchTerm"
+        [(ngModel)]="searchTerm"
+        (input)="search($event)"
+      />
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-4 mt-3 mt-sm-0">
+      <select class="form-select" (change)="selectedUser($event)">
+        <option readonly [value]="0" disabled>User</option>
+        <option *ngFor="let user of users" [value]="user.id">
+          {{ user.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row mt-4 p-2">
+    <table class="table table-hover table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">User</th>
+          <th scope="col">Title</th>
+          <th scope="col">Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of pageOfItems">
+          <th scope="row">{{ post.id }}</th>
+          <td class="link" routerLink="/user/{{ post.userId }}">
+            User {{ post.userId }}
+          </td>
+          <td class="link" routerLink="/posts/{{ post.id }}">
+            {{ post.title }}
+          </td>
+          <td>{{ post.body }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card-footer pb-0 pt-3" *ngIf="posts && posts.length">
+      <app-pagination
+        [items]="posts"
+        (changePage)="onChangePage($event)"
+      ></app-pagination>
+    </div>
+  </div>
+</div>

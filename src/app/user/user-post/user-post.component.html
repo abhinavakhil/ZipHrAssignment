@@ -1,0 +1,17 @@
+<div class="user-post">
+  <div class="card">
+    <div class="card-header">Posts</div>
+
+    <div class="card-body card-common">
+      <ul class="list-group list-group-flush" *ngFor="let post of userPosts">
+        <li class="list-group-item p-0">
+          <h6 class="link" routerLink="/posts/{{ post.id }}">
+            {{ post.title }}
+          </h6>
+          <p>{{ post.body }}</p>
+          <hr />
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

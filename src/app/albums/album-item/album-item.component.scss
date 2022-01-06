@@ -1,0 +1,11 @@
+.album-item {
+  .card {
+    margin-bottom: 20px;
+    height: 300px;
+
+    @media only screen and (max-width: 576px) {
+      height: 430px;
+      margin-left: 22px;
+    }
+  }
+}

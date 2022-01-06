@@ -1,0 +1,16 @@
+<div class="container-fluid sidenav">
+  <div class="row">
+    <div class="col-sm-auto bg-light sticky-top border-right">
+      <div
+        class="d-flex flex-sm-column flex-row flex-nowrap bg-light sticky-top sidenav-wrapper"
+      >
+        <ul *ngFor="let item of sideNavItems" routerLinkActive="active">
+          <li routerLink="{{ item.path }}">{{ item.name }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm min-vh-100 p-0">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

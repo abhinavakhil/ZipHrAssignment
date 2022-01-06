@@ -1,0 +1,57 @@
+<div class="album-item container px-4 pt-4 px-sm-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item link" routerLink="/dashboard">
+        <a>Dashboard</a>
+      </li>
+      <li class="breadcrumb-item link" routerLink="/albums"><a>Albums</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ id }}</li>
+    </ol>
+  </nav>
+
+  <h2>{{ photo?.title }}</h2>
+  <p>
+    by
+    <span class="link" (click)="navigateToUserPage(photo.userId)"
+      >User {{ photo.userId }}</span
+    >
+  </p>
+
+  <div class="row align-items-start">
+    <div class="col-md-2 col-sm-2 col-xs-4">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Search"
+        name="searchTerm"
+        [(ngModel)]="searchTerm"
+        (input)="search($event)"
+      />
+    </div>
+  </div>
+
+  <div class="row mt-4 p-0 p-sm-2">
+    <div class="row">
+      <div class="col-sm-4 col-md-2 col-xs-4" *ngFor="let photo of pageOfItems">
+        <div class="card">
+          <img [src]="photo.thumbnailUrl" class="card-img-top" />
+          <div class="card-body">
+            <p class="card-text link" routerLink="/photos/{{ photo.id }}">
+              {{ photo.title | truncate: 30 }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="card-footer pb-0 pt-3"
+      *ngIf="filteredList && filteredList.length"
+    >
+      <app-pagination
+        [items]="filteredList"
+        (changePage)="onChangePage($event)"
+      ></app-pagination>
+    </div>
+  </div>
+</div>

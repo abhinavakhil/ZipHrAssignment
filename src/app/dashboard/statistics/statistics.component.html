@@ -1,0 +1,27 @@
+<div class="statistics">
+  <div class="card">
+    <div class="card-header">Statistics</div>
+
+    <div
+      class="card-body"
+      *ngIf="posts.length && albums.length && photos.length; else showLoader"
+    >
+      <div class="row align-items-center">
+        <div class="col">
+          <h4>{{ posts.length | number }}</h4>
+          <p>Posts</p>
+        </div>
+        <div class="col">
+          <h4>{{ albums.length | number }}</h4>
+          <p>Albums</p>
+        </div>
+        <div class="col">
+          <h4>{{ photos.length | number }}</h4>
+          <p>Photos</p>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #showLoader> loading... </ng-template>
+  </div>
+</div>

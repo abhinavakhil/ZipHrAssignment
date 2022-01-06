@@ -1,0 +1,16 @@
+<div class="user-album">
+  <div class="card">
+    <div class="card-header">Albums</div>
+
+    <div class="card-body card-common">
+      <ul class="list-group list-group-flush" *ngFor="let album of userAlbums">
+        <li class="list-group-item p-0">
+          <h6 class="link" routerLink="/albums/{{ album.id }}">
+            {{ album.title }}
+          </h6>
+          <hr />
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

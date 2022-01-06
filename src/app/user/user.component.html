@@ -1,0 +1,22 @@
+<div class="user">
+  <div class="user-header">
+    <h2>{{ user?.name }}</h2>
+    <div class="row">
+      <p>
+        @{{ user?.username }} -- {{ user?.email }} -- {{ user?.website }} --
+        {{ user?.company.name }} -- {{ user?.address.city }}
+      </p>
+    </div>
+  </div>
+
+  <div class="container my-3">
+    <div class="row align-items-start">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <app-user-albums [userId]="userId"></app-user-albums>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12 my-3 my-sm-0">
+        <app-user-post [userId]="userId"></app-user-post>
+      </div>
+    </div>
+  </div>
+</div>

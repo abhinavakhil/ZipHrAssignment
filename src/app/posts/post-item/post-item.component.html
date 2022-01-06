@@ -1,0 +1,14 @@
+<div class="post-item container px-4 pt-4 px-sm-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item link" routerLink="/dashboard">
+        <a>Dashboard</a>
+      </li>
+      <li class="breadcrumb-item link" routerLink="/posts"><a>Posts</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ postId }}</li>
+    </ol>
+  </nav>
+
+  <h2>{{ post.title }}</h2>
+  <p>{{ post.body }}</p>
+</div>

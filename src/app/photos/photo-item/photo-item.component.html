@@ -1,0 +1,17 @@
+<div class="post-item container px-4 pt-4 px-sm-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item link" routerLink="/dashboard">
+        <a>Dashboard</a>
+      </li>
+      <li class="breadcrumb-item link" routerLink="/photos"><a>Photos</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ photoId }}</li>
+    </ol>
+  </nav>
+
+  <h2>{{ photo.title }}</h2>
+  <img
+    src="{{ photo.url }}"
+    class="mx-auto d-block img-fluid img-thumbnail mt-4"
+  />
+</div>

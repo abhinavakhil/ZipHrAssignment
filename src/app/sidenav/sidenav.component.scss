@@ -1,0 +1,36 @@
+.sidenav {
+  .border-right {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+    @media only screen and (max-width: 576px) {
+      border-right: 0px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &-wrapper {
+    width: 200px;
+    padding: 20px 0px;
+
+    @media only screen and (max-width: 576px) {
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 10px;
+    margin-bottom: 0px;
+  }
+
+  li {
+    cursor: pointer;
+  }
+
+  .active {
+    background: #6246ea;
+    color: #ffffff;
+  }
+}

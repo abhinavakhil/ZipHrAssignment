@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+.card-common {
+  height: 60vh;
+  overflow-y: auto;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.link {
+  color: #6246ea !important;
+  cursor: pointer;
+}
