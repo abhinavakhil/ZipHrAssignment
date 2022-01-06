@@ -44,13 +44,29 @@
 
           <div
             class="card-body d-flex justify-content-center align-items-center"
+            *ngIf="screenWidth > 576"
           >
             <div class="row">
               <div
-                class="col-xs-3 col-md-3 col-sm-3"
+                class="col-xs-1 col-md-3 col-sm-3"
                 *ngFor="let photo of getfilteredPhotos(album.userId)"
               >
                 <img [src]="photo.thumbnailUrl" class="card-img-top" />
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="screenWidth <= 576">
+            <div class="row album-mobile">
+              <div
+                *ngFor="let photo of getfilteredPhotos(album.userId)"
+                class="col-3"
+              >
+                <img
+                  class="card-img-top"
+                  src="{{ photo.thumbnailUrl }}"
+                  alt="photos"
+                />
               </div>
             </div>
           </div>

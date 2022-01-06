@@ -1,5 +1,11 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CommonService } from 'src/shared/services/common.service';
 
@@ -17,12 +23,21 @@ export class AlbumsComponent implements OnInit, OnDestroy {
   users: Array<any> = [];
   subscription = new Subscription();
   pageOfItems: Array<any> = [];
+  screenWidth: number = 0;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.screenWidth = window.innerWidth;
+  }
 
   constructor(
     private commonService: CommonService,
     private router: Router,
+    private route: ActivatedRoute,
     private cd: ChangeDetectorRef
-  ) {}
+  ) {
+    this.onResize();
+  }
 
   ngOnInit(): void {
     this.getAlbums();
@@ -82,6 +97,12 @@ export class AlbumsComponent implements OnInit, OnDestroy {
    */
   search(event: any): void {
     const value = (<HTMLInputElement>event.target).value;
+
+    this.router.navigate(['.'], {
+      relativeTo: this.route,
+      queryParams: { searching: value },
+    });
+
     this.albums = this.allAlbums.filter((val) =>
       val.title.toLowerCase().includes(value)
     );

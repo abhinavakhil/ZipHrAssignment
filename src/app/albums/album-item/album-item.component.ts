@@ -51,6 +51,12 @@ export class AlbumItemComponent implements OnInit, OnDestroy {
    */
   search(event: any): void {
     const value = (<HTMLInputElement>event.target).value;
+
+    this.router.navigate(['.'], {
+      relativeTo: this.activatedRoute,
+      queryParams: { searching: value },
+    });
+
     this.filteredList = this.allFilteredList.filter((val) =>
       val.title.toLowerCase().includes(value)
     );
@@ -68,7 +74,6 @@ export class AlbumItemComponent implements OnInit, OnDestroy {
         this.filteredList = this.photos.filter((photo) => photo.albumId == id);
         this.allFilteredList = [...this.filteredList];
         this.cd.markForCheck();
-        console.log(this.filteredList);
       })
     );
   }

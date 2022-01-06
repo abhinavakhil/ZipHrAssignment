@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CommonService } from 'src/shared/services/common.service';
 
@@ -18,7 +19,9 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   constructor(
     private commonService: CommonService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +60,12 @@ export class PostsComponent implements OnInit, OnDestroy {
    */
   search(event: any): void {
     const value = (<HTMLInputElement>event.target).value;
+
+    this.router.navigate(['.'], {
+      relativeTo: this.activatedRoute,
+      queryParams: { searching: value },
+    });
+
     this.posts = this.allPosts.filter((val) =>
       val.title.toLowerCase().includes(value)
     );
