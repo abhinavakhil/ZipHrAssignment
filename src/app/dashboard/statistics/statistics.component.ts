@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CommonService } from 'src/shared/services/common.service';
 
@@ -7,16 +7,13 @@ import { CommonService } from 'src/shared/services/common.service';
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss'],
 })
-export class StatisticsComponent implements OnInit {
+export class StatisticsComponent implements OnInit, OnDestroy {
   posts: Array<any> = [];
   albums: Array<any> = [];
   photos: Array<any> = [];
   subscription: Subscription = new Subscription();
 
-  constructor(
-    private commonService: CommonService,
-    private cd: ChangeDetectorRef
-  ) {}
+  constructor(private commonService: CommonService) {}
 
   ngOnInit(): void {
     this.getPosts();
@@ -24,6 +21,9 @@ export class StatisticsComponent implements OnInit {
     this.getPhotos();
   }
 
+  /**
+   * get posts
+   */
   getPosts() {
     this.subscription.add(
       this.commonService.posts().subscribe((response: any) => {
@@ -32,6 +32,9 @@ export class StatisticsComponent implements OnInit {
     );
   }
 
+  /**
+   * get albums
+   */
   getAlbums() {
     this.subscription.add(
       this.commonService.albums().subscribe((response: any) => {
@@ -40,11 +43,18 @@ export class StatisticsComponent implements OnInit {
     );
   }
 
+  /**
+   * get photos
+   */
   getPhotos() {
     this.subscription.add(
       this.commonService.photos().subscribe((response: any) => {
         this.photos = [...response];
       })
     );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

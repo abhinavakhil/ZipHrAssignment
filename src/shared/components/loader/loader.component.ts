@@ -10,9 +10,8 @@ export class LoaderComponent implements OnInit {
   loading: boolean | undefined;
 
   constructor(private loaderService: LoaderService) {
-    this.loaderService.isLoading.subscribe((v) => {
-      console.log(v);
-      this.loading = v;
+    this.loaderService.isLoading.subscribe((loader) => {
+      this.loading = loader;
     });
   }
   ngOnInit(): void {}

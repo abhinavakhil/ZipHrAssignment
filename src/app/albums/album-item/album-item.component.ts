@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CommonService } from 'src/shared/services/common.service';
@@ -8,7 +8,7 @@ import { CommonService } from 'src/shared/services/common.service';
   templateUrl: './album-item.component.html',
   styleUrls: ['./album-item.component.scss'],
 })
-export class AlbumItemComponent implements OnInit {
+export class AlbumItemComponent implements OnInit, OnDestroy {
   id: number = 0;
   searchTerm: string = '';
   photo: any;
@@ -33,12 +33,22 @@ export class AlbumItemComponent implements OnInit {
     });
   }
 
+  /**
+   * get currently active album
+   * @param id album id
+   */
   getCurrentAlbum(id: number) {
-    this.commonService.albumById(id).subscribe((response) => {
-      this.photo = { ...response };
-    });
+    this.subscription.add(
+      this.commonService.albumById(id).subscribe((response) => {
+        this.photo = { ...response };
+      })
+    );
   }
 
+  /**
+   * filter album by title
+   * @param event
+   */
   search(event: any): void {
     const value = (<HTMLInputElement>event.target).value;
     this.filteredList = this.allFilteredList.filter((val) =>
@@ -46,6 +56,10 @@ export class AlbumItemComponent implements OnInit {
     );
   }
 
+  /**
+   * get filtered photos list
+   * @param id album id
+   */
   getfilteredPhotos(id: number) {
     this.subscription.add(
       this.commonService.photos().subscribe((response: any) => {
@@ -59,11 +73,23 @@ export class AlbumItemComponent implements OnInit {
     );
   }
 
+  /**
+   * when page is changed
+   * @param pageOfItems array
+   */
   onChangePage(pageOfItems: Array<any>) {
     this.pageOfItems = pageOfItems;
   }
 
+  /**
+   * navigate to user page
+   * @param userId
+   */
   navigateToUserPage(userId: number) {
     this.router.navigate([`/user/${userId}`]);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
