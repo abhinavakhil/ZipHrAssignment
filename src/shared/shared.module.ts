@@ -5,14 +5,8 @@ import { JwPaginationModule } from 'jw-angular-pagination';
 import { Pipes } from './pipes';
 
 @NgModule({
-  declarations: [
-    PaginationComponent,
-    Pipes,
-  ],
-  imports: [
-    CommonModule,
-    JwPaginationModule,
-  ],
-  exports:[PaginationComponent,Pipes]
+  declarations: [PaginationComponent, Pipes],
+  imports: [CommonModule, JwPaginationModule],
+  exports: [PaginationComponent, Pipes],
 })
-export class SharedModule { }
+export class SharedModule {}
