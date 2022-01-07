@@ -1,10 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-.card-common {
-  height: 60vh;
-  overflow-y: auto;
-}
-
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
@@ -12,7 +7,32 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.card-common {
+  height: 60vh;
+  overflow-y: auto;
+}
+
 .link {
   color: #6246ea !important;
   cursor: pointer;
+}
+
+.card-container {
+  height: 300px;
+  margin-bottom: 20px;
+
+  @media only screen and (max-width: 576px) {
+    height: 540px;
+    margin-left: 22px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    height: 460px;
+  }
+}
+
+.truncate-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }

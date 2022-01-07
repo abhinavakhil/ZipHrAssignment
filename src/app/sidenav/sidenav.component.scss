@@ -12,12 +12,7 @@
     width: 200px;
     padding: 20px 0px;
 
-    @media only screen and (max-width: 940px) {
-      width: 25px;
-      overflow-x: auto;
-    }
-
-    @media only screen and (max-width: 576px) {
+    @media only screen and (max-width: 992px) {
       justify-content: space-between;
       align-items: center;
       width: 100%;

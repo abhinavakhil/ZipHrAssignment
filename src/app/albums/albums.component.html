@@ -1,4 +1,4 @@
-<div class="albums container px-4 pt-4 px-sm-5">
+<div class="albums container-lg px-4 pt-4 px-sm-5">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item link" routerLink="/dashboard">
@@ -34,12 +34,15 @@
   <div class="row mt-4 p-0 p-sm-2">
     <div class="row">
       <div
-        class="col-xs-12 col-md-3 col-sm-3"
+        class="col-xs-12 col-md-4 col-sm-4"
         *ngFor="let album of pageOfItems"
       >
         <div class="card">
-          <div class="card-header link" routerLink="/albums/{{ album.id }}">
-            {{ album.title | truncate: 32 }}
+          <div
+            class="card-header link truncate-text"
+            routerLink="/albums/{{ album.id }}"
+          >
+            {{ album.title }}
           </div>
 
           <div

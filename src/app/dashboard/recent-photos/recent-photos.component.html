@@ -12,8 +12,8 @@
                 src="{{ photo.thumbnailUrl }}"
                 alt="photos"
               />
-              <p class="link" routerLink="/photos/{{ photo.id }}">
-                {{ photo.title | truncate: 8 | titlecase }}
+              <p class="link truncate-text" routerLink="/photos/{{ photo.id }}">
+                {{ photo.title | titlecase }}
               </p>
             </div>
           </div>
